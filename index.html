@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiday Bot - Karyawan Digital Perjalanan Anda</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-600/20">
+                    <i class="fa-solid fa-plane-departure"></i>
+                </div>
+                <span class="font-bold text-xl tracking-tight text-slate-900">Holiday Bot</span>
+            </div>
+            <a href="https://wa.me/6285607178633" target="_blank" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm shadow-sm hover:bg-blue-700 transition-all">
+                Hubungi Asisten
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
+
+        <!-- 1. HERO SECTION -->
+        <section class="text-center space-y-6 max-w-3xl mx-auto pt-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Status: Active & Ready 24/7
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Asisten Liburan Cerdas & Pengelola Keuangan Perjalanan Anda
+            </h1>
+            
+            <p class="text-lg text-slate-600 leading-relaxed">
+                Holiday Bot siap merekap pengeluaran, menghitung split bill otomatis untuk 2 orang, dan merapikan seluruh dokumen perjalanan Anda tanpa ribet.
+            </p>
+
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://wa.me/6285607178633" target="_blank" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-blue-600 text-white font-medium shadow-lg shadow-blue-600/25 hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Mulai Percakapan
+                </a>
+                <a href="#simulasi" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
+                    Coba Simulasi <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. PROBLEM & SOLUTION CARD -->
+        <section class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Mengapa Perlu Holiday Bot?</h2>
+                <p class="text-slate-600 text-sm sm:text-base">Transformasi dari kekacauan perencanaan liburan menuju pengalaman yang terstruktur.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- The Chaos -->
+                <div class="bg-rose-50/50 border border-rose-100 rounded-2xl p-8 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-rose-100 flex items-center justify-center text-rose-600">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-rose-900">The Chaos (Masalah)</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-rose-500 mt-1"></i>
+                            <span>Pengeluaran liburan tercatat berantakan dan sering boncos di tengah jalan.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-rose-500 mt-1"></i>
+                            <span>Kebingungan saat menghitung pembagian biaya (split bill) untuk 2 orang secara adil.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-rose-500 mt-1"></i>
+                            <span>Dokumen penting (tiket, booking hotel) tercecer di galeri atau email yang sulit dicari.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- The Solution -->
+                <div class="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-8 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-emerald-900">The Solution (Solusi)</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                            <span>Rekapitulasi otomatis setiap transaksi langsung terhubung ke Google Sheet.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                            <span>Perhitungan split bill akurat instan untuk 2 orang tanpa sengketa finansial.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                            <span>Penyimpanan arsip digital otomatis dan rapi tersusun aman di dalam Google Drive.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CORE CAPABILITIES -->
+        <section class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Core Capabilities & Tools</h2>
+                <p class="text-slate-600 text-sm sm:text-base">Fitur unggulan yang ditenagai oleh ekosistem produktivitas modern.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-file-excel"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Google Sheet Rekap</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Pencatatan pos pengeluaran secara real-time. Membantu Anda memantau sisa anggaran liburan setiap harinya.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Split Bill Akurat</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Algoritma pembagian biaya khusus untuk 2 orang secara adil, transparan, dan langsung merinci siapa berutang apa.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-folder-tree"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">G Drive & Calendar</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Menyimpan semua dokumen perjalanan di Google Drive dengan rapi dan menyinkronkan jadwal acara ke Google Calendar.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. INTERACTIVE SIMULATION -->
+        <section id="simulasi" class="space-y-8 max-w-3xl mx-auto">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Simulasi Percakapan Interaktif</h2>
+                <p class="text-slate-600 text-sm sm:text-base">Uji coba respons Holiday Bot berdasarkan skenario penggunaan nyata.</p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                <!-- Chat Header -->
+                <div class="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+                    <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                    <span class="font-semibold text-sm text-slate-700">Holiday Bot Assistant</span>
+                </div>
+
+                <!-- Chat Box Body -->
+                <div id="chat-messages" class="p-6 h-80 overflow-y-auto space-y-4 flex flex-col bg-slate-50/50">
+                    <div class="self-start bg-white border border-slate-100 p-4 rounded-2xl rounded-tl-sm shadow-xs max-w-[85%] text-sm text-slate-700">
+                        Halo! Saya Holiday Bot. Ada yang bisa saya bantu terkait liburan Anda hari ini? Pilih skenario di bawah untuk memulai.
+                    </div>
+                </div>
+
+                <!-- Typing Indicator -->
+                <div id="typing-indicator" class="px-6 py-2 hidden bg-slate-50/50">
+                    <div class="inline-flex items-center gap-1.5 bg-white border border-slate-100 px-4 py-2 rounded-xl text-xs text-slate-400">
+                        <span>Holiday Bot sedang mengetik</span>
+                        <span class="flex gap-1">
+                            <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
+                            <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                            <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Chat Buttons / Scenarios -->
+                <div class="p-4 bg-white border-t border-slate-100 flex flex-wrap gap-2 justify-center">
+                    <button onclick="runSimulation(1)" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-xs font-medium text-slate-700 transition-colors border border-slate-200/60">
+                        1. Catat Pengeluaran
+                    </button>
+                    <button onclick="runSimulation(2)" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-xs font-medium text-slate-700 transition-colors border border-slate-200/60">
+                        2. Hitung Split Bill
+                    </button>
+                    <button onclick="runSimulation(3)" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-xs font-medium text-slate-700 transition-colors border border-slate-200/60">
+                        3. Simpan Dokumen G Drive
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. FOOTER & CTA -->
+        <footer class="border-t border-slate-200 pt-12 pb-16 text-center space-y-6">
+            <div class="space-y-3 max-w-xl mx-auto">
+                <h3 class="text-2xl font-bold text-slate-900">Siap Membuat Liburan Lebih Terorganisir?</h3>
+                <p class="text-sm text-slate-600">Hubungi pengembang atau coba langsung agen digital ini sekarang juga.</p>
+                <div class="pt-2">
+                    <a href="https://wa.me/6285607178633" target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-emerald-600 text-white font-medium shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 transition-all text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Hubungi via WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-100 text-xs text-slate-400">
+                Built with AI · AI Builder Bootcamp Showcase
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Simulation Script -->
+    <script>
+        const scenarios = {
+            1: {
+                user: "Tolong catat pengeluaran makan malam Rp350.000 ke Google Sheet.",
+                bot: "Siap! Pengeluaran makan malam sebesar Rp350.000 telah berhasil dicatat dan disinkronkan ke Google Sheet rekap perjalanan Anda."
+            },
+            2: {
+                user: "Hitung split bill total belanja kemarin untuk kita berdua.",
+                bot: "Baik, total belanja kemarin Rp600.000. Dibagi 2 orang masing-masing menjadi Rp300.000. Data sudah diperbarui di lembar kalkulasi."
+            },
+            3: {
+                user: "Tolong simpan e-ticket pesawat ini ke Google Drive.",
+                bot: "E-ticket pesawat berhasil diunggah dan dikelompokkan ke dalam folder 'Tiket & Akomodasi' di Google Drive dengan aman."
+            }
+        };
+
+        function runSimulation(id) {
+            const chatMessages = document.getElementById('chat-messages');
+            const typingIndicator = document.getElementById('typing-indicator');
+            
+            // Append User Message
+            const userDiv = document.createElement('div');
+            userDiv.className = "self-end bg-blue-600 text-white p-4 rounded-2xl rounded-tr-sm shadow-xs max-w-[85%] text-sm";
+            userDiv.textContent = scenarios[id].user;
+            chatMessages.appendChild(userDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Show Typing Indicator
+            typingIndicator.classList.remove('hidden');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate Bot Response Delay
+            setTimeout(() => {
+                typingIndicator.classList.add('hidden');
+                const botDiv = document.createElement('div');
+                botDiv.className = "self-start bg-white border border-slate-100 p-4 rounded-2xl rounded-tl-sm shadow-xs max-w-[85%] text-sm text-slate-700";
+                botDiv.textContent = scenarios[id].bot;
+                chatMessages.appendChild(botDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
