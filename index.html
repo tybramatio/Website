@@ -49,8 +49,8 @@
                 <a href="https://wa.me/6285607178633" target="_blank" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-blue-600 text-white font-medium shadow-lg shadow-blue-600/25 hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Mulai Percakapan
                 </a>
-                <a href="#simulasi" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
-                    Coba Simulasi <i class="fa-solid fa-arrow-down text-xs"></i>
+                <a href="#destinasi" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
+                    Jelajahi Database <i class="fa-solid fa-arrow-down text-xs"></i>
                 </a>
             </div>
         </section>
@@ -156,32 +156,109 @@
             </div>
         </section>
 
-        <!-- DATABASE PLACES TABLE SECTION -->
-        <section class="space-y-6">
-            <div class="text-center space-y-2">
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Database Destinasi & Tempat</h2>
-                <p class="text-slate-600 text-sm sm:text-base">Daftar rekomendasi tempat tersinkronisasi langsung dari database Supabase.</p>
+        <!-- DATABASE PLACES TABLE SECTION (DISESUAIKAN DENGAN STYLE SITUS) -->
+        <section id="destinasi" class="space-y-6 scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div class="space-y-2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold tracking-wide">
+                        <i class="fa-solid fa-database text-[11px]"></i>
+                        <span>Live Supabase Database</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Database Destinasi & Tempat</h2>
+                    <p class="text-slate-600 text-sm sm:text-base">Daftar rekomendasi tempat tersinkronisasi langsung dari database Supabase.</p>
+                </div>
+
+                <!-- Total Count Badge -->
+                <div class="flex items-center gap-2">
+                    <div class="px-4 py-2 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-2 text-xs font-semibold text-slate-700">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span id="places-count-badge">Memuat data...</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+            <!-- Table Card Container -->
+            <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden">
+                
+                <!-- Filter & Search Toolbar -->
+                <div class="p-5 border-b border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                    <!-- Search Input -->
+                    <div class="relative flex-1 max-w-md">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input id="search-input" type="text" placeholder="Cari nama tempat, kategori, atau kota..." 
+                               class="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-2xs">
+                    </div>
+
+                    <!-- Category Filter Dropdown & Reset -->
+                    <div class="flex items-center gap-2">
+                        <div class="relative w-full sm:w-auto">
+                            <select id="category-filter" class="w-full sm:w-auto appearance-none bg-white border border-slate-200 text-slate-700 text-xs font-medium py-2 pl-3.5 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 shadow-2xs cursor-pointer">
+                                <option value="">Semua Kategori</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-slate-400 pointer-events-none"></i>
+                        </div>
+
+                        <!-- Reset Filter Button -->
+                        <button id="reset-filter-btn" title="Reset filter" class="hidden px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs transition-colors">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Responsive Table Content -->
                 <div class="overflow-x-auto">
                     <table id="places" class="w-full text-left border-collapse text-sm">
-                        <thead class="bg-slate-100 text-slate-700 uppercase font-semibold text-xs tracking-wider border-b border-slate-200">
+                        <thead class="bg-slate-50/90 text-slate-600 uppercase font-semibold text-[11px] tracking-wider border-b border-slate-200">
                             <tr>
-                                <th class="px-6 py-4">Nama</th>
-                                <th class="px-6 py-4">Kategori</th>
-                                <th class="px-6 py-4">Rating</th>
-                                <th class="px-6 py-4">Review</th>
-                                <th class="px-6 py-4">Kota</th>
-                                <th class="px-6 py-4">Telepon</th>
-                                <th class="px-6 py-4">Maps</th>
+                                <th class="px-6 py-4">
+                                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-store text-slate-400"></i> Tempat & Alamat</span>
+                                </th>
+                                <th class="px-6 py-4">
+                                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-tags text-slate-400"></i> Kategori</span>
+                                </th>
+                                <th class="px-6 py-4">
+                                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-500"></i> Rating & Ulasan</span>
+                                </th>
+                                <th class="px-6 py-4">
+                                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-rose-500"></i> Kota</span>
+                                </th>
+                                <th class="px-6 py-4">
+                                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-phone text-blue-500"></i> Kontak</span>
+                                </th>
+                                <th class="px-6 py-4 text-center">
+                                    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-map-location-dot text-indigo-500"></i> Lokasi</span>
+                                </th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-100 text-slate-600">
-                            <tr><td colspan="7" class="px-6 py-8 text-center text-slate-400">Memuat data...</td></tr>
+                        <tbody id="places-tbody" class="divide-y divide-slate-100 text-slate-600">
+                            <tr>
+                                <td colspan="6" class="px-6 py-12 text-center">
+                                    <div class="inline-flex items-center gap-3 text-slate-500 text-sm">
+                                        <i class="fa-solid fa-circle-notch fa-spin text-blue-600 text-lg"></i>
+                                        <span>Menghubungkan ke Supabase & memuat data...</span>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Table Pagination Footer -->
+                <div class="px-6 py-4 bg-slate-50/60 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+                    <div id="pagination-info">
+                        Menampilkan <span id="showing-start" class="font-medium text-slate-700">0</span> - <span id="showing-end" class="font-medium text-slate-700">0</span> dari <span id="total-items" class="font-bold text-slate-900">0</span> tempat
+                    </div>
+                    <div class="flex items-center gap-2" id="pagination-controls">
+                        <button id="prev-btn" class="px-3.5 py-1.5 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed font-medium transition-all shadow-2xs">
+                            <i class="fa-solid fa-chevron-left text-[10px] mr-1"></i> Prev
+                        </button>
+                        <span id="page-badge" class="px-3 py-1 font-semibold text-slate-700 bg-slate-100 rounded-lg">Hal 1 / 1</span>
+                        <button id="next-btn" class="px-3.5 py-1.5 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed font-medium transition-all shadow-2xs">
+                            Next <i class="fa-solid fa-chevron-right text-[10px] ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -296,52 +373,280 @@
             }, 1200);
         }
 
-        // Supabase Places Loader Script
+        // Supabase Places Loader & Interactive Table Script
         const SUPABASE_URL = 'https://szsqockyuctsvauxfqpt.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_hcWt5iBIHXx0avXkaHOkSg_wmOvIlcC'; // publishable key, BUKAN secret key
+        const SUPABASE_KEY = 'sb_publishable_hcWt5iBIHXx0avXkaHOkSg_wmOvIlcC';
+
+        let allPlaces = [];
+        let filteredPlaces = [];
+        let currentPage = 1;
+        const pageSize = 10;
+
+        // Pemilihan icon sesuai kategori
+        function getCategoryIcon(cat) {
+            if (!cat) return 'fa-store';
+            const c = cat.toLowerCase();
+            if (c.includes('kopi') || c.includes('kafe') || c.includes('cafe') || c.includes('coffee')) return 'fa-mug-saucer';
+            if (c.includes('makan') || c.includes('resto') || c.includes('kuliner')) return 'fa-utensils';
+            if (c.includes('hotel') || c.includes('penginapan') || c.includes('villa')) return 'fa-hotel';
+            if (c.includes('wisata') || c.includes('pantai') || c.includes('taman')) return 'fa-mountain-sun';
+            return 'fa-store';
+        }
 
         async function loadPlaces() {
-            const tbody = document.querySelector('#places tbody');
+            const tbody = document.getElementById('places-tbody');
+            const countBadge = document.getElementById('places-count-badge');
+            
             try {
                 const res = await fetch(
-                    SUPABASE_URL + '/rest/v1/places?select=*&order=reviews_count.desc.nullslast&limit=100',
+                    `${SUPABASE_URL}/rest/v1/places?select=*&order=reviews_count.desc.nullslast&limit=100`,
                     { headers: { apikey: SUPABASE_KEY } }
                 );
+                
                 if (!res.ok) throw new Error('HTTP ' + res.status);
-                const rows = await res.json();
+                allPlaces = await res.json();
+                filteredPlaces = [...allPlaces];
 
-                tbody.replaceChildren();
-                for (const p of rows) {
-                    const tr = document.createElement('tr');
-                    tr.className = "hover:bg-slate-50/80 transition-colors";
-                    for (const v of [p.title, p.category_name, p.total_score, p.reviews_count, p.city, p.phone]) {
-                        const td = document.createElement('td');
-                        td.className = "px-6 py-4";
-                        td.textContent = v ?? '-';
-                        tr.appendChild(td);
-                    }
-                    const td = document.createElement('td');
-                    td.className = "px-6 py-4";
-                    if (p.url && p.url.startsWith('https://')) {
-                        const a = document.createElement('a');
-                        a.href = p.url;
-                        a.target = '_blank';
-                        a.rel = 'noopener';
-                        a.className = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 font-medium text-xs transition-colors";
-                        a.innerHTML = '<i class="fa-solid fa-map-location-dot"></i> Buka';
-                        td.appendChild(a);
-                    } else {
-                        td.textContent = '-';
-                    }
-                    tr.appendChild(td);
-                    tbody.appendChild(tr);
-                }
-                if (!rows.length) tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-slate-400">Belum ada data.</td></tr>';
+                countBadge.textContent = `${allPlaces.length} Tempat Tersedia`;
+                
+                populateCategoryFilter(allPlaces);
+                renderTable();
             } catch (e) {
-                tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-rose-500">Gagal memuat data dari database.</td></tr>';
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="px-6 py-12 text-center">
+                            <div class="inline-flex flex-col items-center gap-2 p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-700 max-w-md mx-auto">
+                                <i class="fa-solid fa-triangle-exclamation text-2xl text-rose-500"></i>
+                                <div class="font-semibold text-sm">Gagal memuat data dari Supabase</div>
+                                <div class="text-xs text-rose-600/80">Periksa koneksi internet atau izin API key tabel.</div>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                countBadge.textContent = 'Gagal sinkronisasi';
                 console.error(e);
             }
         }
+
+        function populateCategoryFilter(places) {
+            const categorySelect = document.getElementById('category-filter');
+            const categories = new Set();
+            places.forEach(p => {
+                if (p.category_name) categories.add(p.category_name.trim());
+            });
+
+            categorySelect.innerHTML = '<option value="">Semua Kategori</option>';
+            Array.from(categories).sort().forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.textContent = cat;
+                categorySelect.appendChild(opt);
+            });
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('places-tbody');
+            const total = filteredPlaces.length;
+
+            if (total === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="px-6 py-12 text-center">
+                            <div class="flex flex-col items-center justify-center gap-3 text-slate-400">
+                                <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-xl text-slate-400">
+                                    <i class="fa-regular fa-folder-open"></i>
+                                </div>
+                                <div class="font-medium text-slate-600 text-sm">Tidak ada tempat yang sesuai</div>
+                                <p class="text-xs text-slate-400 max-w-xs">Coba gunakan kata kunci pencarian lain atau reset filter kategori.</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                updatePagination(0, 0, 0, 1, 1);
+                return;
+            }
+
+            const totalPages = Math.ceil(total / pageSize);
+            if (currentPage > totalPages) currentPage = totalPages;
+            if (currentPage < 1) currentPage = 1;
+
+            const startIndex = (currentPage - 1) * pageSize;
+            const endIndex = Math.min(startIndex + pageSize, total);
+            const currentSlice = filteredPlaces.slice(startIndex, endIndex);
+
+            tbody.innerHTML = '';
+            for (const p of currentSlice) {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50/80 transition-colors group";
+
+                const icon = getCategoryIcon(p.category_name);
+                const score = p.total_score ? Number(p.total_score).toFixed(1) : null;
+                const reviews = p.reviews_count ? Number(p.reviews_count).toLocaleString('id-ID') : 0;
+
+                tr.innerHTML = `
+                    <!-- 1. Tempat & Alamat -->
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-base shadow-2xs group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                <i class="fa-solid ${icon}"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <div class="font-semibold text-slate-900 text-sm group-hover:text-blue-600 transition-colors truncate max-w-[200px] sm:max-w-[260px]" title="${p.title || '-'}">
+                                    ${p.title || '-'}
+                                </div>
+                                ${p.street ? `
+                                    <div class="text-xs text-slate-400 truncate max-w-[200px] sm:max-w-[260px] flex items-center gap-1 mt-0.5" title="${p.street}">
+                                        <i class="fa-regular fa-compass text-[10px]"></i>
+                                        <span>${p.street}</span>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </td>
+
+                    <!-- 2. Kategori -->
+                    <td class="px-6 py-4">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200/70">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                            <span>${p.category_name || 'Umum'}</span>
+                        </span>
+                    </td>
+
+                    <!-- 3. Rating & Ulasan -->
+                    <td class="px-6 py-4">
+                        <div class="flex flex-col gap-0.5">
+                            <div class="flex items-center gap-1.5">
+                                ${score ? `
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200/70 font-bold text-xs">
+                                        <i class="fa-solid fa-star text-amber-500 text-[10px]"></i>
+                                        <span>${score}</span>
+                                    </span>
+                                ` : `<span class="text-xs text-slate-400 font-medium">-</span>`}
+                                
+                                <span class="text-xs text-slate-500">
+                                    (${reviews} ulasan)
+                                </span>
+                            </div>
+                            <span class="text-[10px] text-slate-400">Google Maps Rating</span>
+                        </div>
+                    </td>
+
+                    <!-- 4. Kota -->
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-1.5 text-xs text-slate-700 font-medium">
+                            <i class="fa-solid fa-location-dot text-rose-500 text-xs"></i>
+                            <span>${p.city || '-'}</span>
+                        </div>
+                        ${p.state ? `<div class="text-[11px] text-slate-400 ml-4">${p.state}</div>` : ''}
+                    </td>
+
+                    <!-- 5. Kontak -->
+                    <td class="px-6 py-4">
+                        <div class="flex flex-col gap-1 text-xs">
+                            ${p.phone ? `
+                                <a href="tel:${p.phone.replace(/[\s\-\(\)]/g, '')}" class="inline-flex items-center gap-1.5 text-slate-700 hover:text-blue-600 transition-colors font-medium">
+                                    <i class="fa-solid fa-phone text-slate-400 text-[11px]"></i>
+                                    <span>${p.phone}</span>
+                                </a>
+                            ` : `<span class="text-slate-400 italic text-[11px]">-</span>`}
+                            
+                            ${p.website ? `
+                                <a href="${p.website}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-blue-600 hover:text-blue-700 transition-colors text-[11px]">
+                                    <i class="fa-solid fa-globe text-[11px]"></i>
+                                    <span class="truncate max-w-[120px]">Kunjungi Web</span>
+                                </a>
+                            ` : ''}
+                        </div>
+                    </td>
+
+                    <!-- 6. Aksi / Google Maps Link -->
+                    <td class="px-6 py-4 text-center">
+                        ${p.url && p.url.startsWith('https://') ? `
+                            <a href="${p.url}" target="_blank" rel="noopener" 
+                               class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white font-medium text-xs border border-blue-200/80 hover:border-blue-600 transition-all shadow-2xs hover:shadow-xs group/btn">
+                                <span>Buka Maps</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"></i>
+                            </a>
+                        ` : `<span class="text-slate-400 text-xs">-</span>`}
+                    </td>
+                `;
+
+                tbody.appendChild(tr);
+            }
+
+            updatePagination(startIndex + 1, endIndex, total, currentPage, totalPages);
+        }
+
+        function updatePagination(start, end, total, page, totalPages) {
+            document.getElementById('showing-start').textContent = start;
+            document.getElementById('showing-end').textContent = end;
+            document.getElementById('total-items').textContent = total;
+            document.getElementById('page-badge').textContent = `Hal ${page} / ${totalPages || 1}`;
+
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            prevBtn.disabled = page <= 1;
+            nextBtn.disabled = page >= totalPages;
+        }
+
+        // Event Handler Pencarian & Filter Kategori
+        function filterPlaces() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const category = document.getElementById('category-filter').value;
+            const resetBtn = document.getElementById('reset-filter-btn');
+
+            if (query || category) {
+                resetBtn.classList.remove('hidden');
+            } else {
+                resetBtn.classList.add('hidden');
+            }
+
+            filteredPlaces = allPlaces.filter(p => {
+                const matchCategory = !category || (p.category_name && p.category_name.trim() === category);
+                const titleStr = (p.title || '').toLowerCase();
+                const cityStr = (p.city || '').toLowerCase();
+                const catStr = (p.category_name || '').toLowerCase();
+                const streetStr = (p.street || '').toLowerCase();
+
+                const matchQuery = !query || 
+                    titleStr.includes(query) || 
+                    cityStr.includes(query) || 
+                    catStr.includes(query) || 
+                    streetStr.includes(query);
+
+                return matchCategory && matchQuery;
+            });
+
+            currentPage = 1;
+            renderTable();
+        }
+
+        document.getElementById('search-input').addEventListener('input', filterPlaces);
+        document.getElementById('category-filter').addEventListener('change', filterPlaces);
+        
+        document.getElementById('reset-filter-btn').addEventListener('click', () => {
+            document.getElementById('search-input').value = '';
+            document.getElementById('category-filter').value = '';
+            filterPlaces();
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderTable();
+            }
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredPlaces.length / pageSize);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderTable();
+            }
+        });
+
+        // Muat data saat halaman dibuka
         loadPlaces();
     </script>
 </body>
