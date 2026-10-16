@@ -14,7 +14,7 @@
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
 
     <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100">
         <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-600/20">
@@ -156,6 +156,35 @@
             </div>
         </section>
 
+        <!-- DATABASE PLACES TABLE SECTION -->
+        <section class="space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Database Destinasi & Tempat</h2>
+                <p class="text-slate-600 text-sm sm:text-base">Daftar rekomendasi tempat tersinkronisasi langsung dari database Supabase.</p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table id="places" class="w-full text-left border-collapse text-sm">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-semibold text-xs tracking-wider border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-4">Nama</th>
+                                <th class="px-6 py-4">Kategori</th>
+                                <th class="px-6 py-4">Rating</th>
+                                <th class="px-6 py-4">Review</th>
+                                <th class="px-6 py-4">Kota</th>
+                                <th class="px-6 py-4">Telepon</th>
+                                <th class="px-6 py-4">Maps</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-600">
+                            <tr><td colspan="7" class="px-6 py-8 text-center text-slate-400">Memuat data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
         <!-- 4. INTERACTIVE SIMULATION -->
         <section id="simulasi" class="space-y-8 max-w-3xl mx-auto">
             <div class="text-center space-y-2">
@@ -223,8 +252,9 @@
 
     </main>
 
-    <!-- Simulation Script -->
+    <!-- Scripts (Simulation & Supabase Places Loader) -->
     <script>
+        // Simulation Script
         const scenarios = {
             1: {
                 user: "Tolong catat pengeluaran makan malam Rp350.000 ke Google Sheet.",
@@ -265,6 +295,54 @@
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 1200);
         }
+
+        // Supabase Places Loader Script
+        const SUPABASE_URL = 'https://szsqockyuctsvauxfqpt.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_hcWt5iBIHXx0avXkaHOkSg_wmOvIlcC'; // publishable key, BUKAN secret key
+
+        async function loadPlaces() {
+            const tbody = document.querySelector('#places tbody');
+            try {
+                const res = await fetch(
+                    SUPABASE_URL + '/rest/v1/places?select=*&order=reviews_count.desc.nullslast&limit=100',
+                    { headers: { apikey: SUPABASE_KEY } }
+                );
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const rows = await res.json();
+
+                tbody.replaceChildren();
+                for (const p of rows) {
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-slate-50/80 transition-colors";
+                    for (const v of [p.title, p.category_name, p.total_score, p.reviews_count, p.city, p.phone]) {
+                        const td = document.createElement('td');
+                        td.className = "px-6 py-4";
+                        td.textContent = v ?? '-';
+                        tr.appendChild(td);
+                    }
+                    const td = document.createElement('td');
+                    td.className = "px-6 py-4";
+                    if (p.url && p.url.startsWith('https://')) {
+                        const a = document.createElement('a');
+                        a.href = p.url;
+                        a.target = '_blank';
+                        a.rel = 'noopener';
+                        a.className = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 font-medium text-xs transition-colors";
+                        a.innerHTML = '<i class="fa-solid fa-map-location-dot"></i> Buka';
+                        td.appendChild(a);
+                    } else {
+                        td.textContent = '-';
+                    }
+                    tr.appendChild(td);
+                    tbody.appendChild(tr);
+                }
+                if (!rows.length) tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-slate-400">Belum ada data.</td></tr>';
+            } catch (e) {
+                tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-rose-500">Gagal memuat data dari database.</td></tr>';
+                console.error(e);
+            }
+        }
+        loadPlaces();
     </script>
 </body>
 </html>
